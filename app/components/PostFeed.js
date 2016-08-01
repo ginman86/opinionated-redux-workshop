@@ -15,16 +15,11 @@ const postSpacerStyle = {
 }
 
 /* component */
-export default React.createClass({
-    propTypes: {
-        posts: PropTypes.array,
-        onMount: PropTypes.func
-    },
-
+class PostFeed extends React.Component {
     componentDidMount() {
-      this.props.onMount(this.props.creatorId)
-      console.log(this.props)
-    },
+      const { onMount, creatorId } = this.props;
+      onMount(creatorId);
+    }
 
     renderPost(post) {
         return (
@@ -33,10 +28,10 @@ export default React.createClass({
                 <Post post={post} />
             </div>
         )
-    },
+    }
 
     render() {
-        const { posts, isLoading } = this.props
+        const { posts, isLoading } = this.props;
 
         return isLoading ?
             'Loading!' :
@@ -44,4 +39,12 @@ export default React.createClass({
                 { posts && posts.map(this.renderPost) }
             </div>)
     }
-})
+}
+
+PostFeed.propTypes = {
+    posts: PropTypes.array,
+    onMount: PropTypes.func
+};
+
+
+export default PostFeed;

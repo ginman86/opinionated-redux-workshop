@@ -22,18 +22,14 @@ const h2ContainerStyle = {
 }
 
 export default ({ post }) => {
-  console.log(post)
     return (
         <div style={postStyle}>
             <div style={h2ContainerStyle}>
                 <h2 style={h2Style}>{ post.attributes.title }</h2>
             </div>
-            {
-              post.attributes.image && <img src="http://cultofthepartyparrot.com/parrots/parrot.gif" style={imgStyle}/>
-            }
-            {
-              post.attributes.content 
-            }
+            {post.attributes.image &&
+              <img src="http://cultofthepartyparrot.com/parrots/parrot.gif" style={imgStyle}/>}
+            {post.attributes.content }
         </div>
     )
 }
