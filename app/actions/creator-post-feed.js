@@ -2,8 +2,9 @@ import jsonApiUrl from 'utils/json-api-url'
 import fetch from 'isomorphic-fetch'
 import { camelizeKeys } from 'humps'
 
-export const FETCH_CREATOR_POST_FEED_START = 'FETCH_CREATOR_POST_FEED_START'
-export const FETCH_CREATOR_POST_FEED_SUCCESS = 'FETCH_CREATOR_POST_FEED_SUCCESS'
+export const FETCH_CREATOR_POST_FEED = 'FETCH_CREATOR_POST_FEED';
+
+import { fetchUrl } from '../utils/fetch-utils';
 
 const fetchCreatorPostFeedIncludes = ['user.null']
 const fetchCreatorPostFeedFields = {
@@ -21,7 +22,7 @@ const fetchCreatorPostFeedFields = {
     ]
 }
 
-export const fetchCreatorPostFeed = (creatorId) => {
+export const fetchCreatorPostFeed = (creatorId, dispatch) => {
     const url = jsonApiUrl('/stream', {
         'include': fetchCreatorPostFeedIncludes,
         'fields': fetchCreatorPostFeedFields,
@@ -34,13 +35,6 @@ export const fetchCreatorPostFeed = (creatorId) => {
             'creator_id': creatorId
         }
     })
-    console.log(url) 
 
-    return fetch(url).then((response) => {
-
-      console.log('response', response)
-      return response.json().then((data) => {
-        return data
-      })
-    })
+    return fetchUrl(url, dispatch, FETCH_CREATOR_POST_FEED);
 }
