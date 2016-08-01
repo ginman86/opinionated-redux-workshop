@@ -2,7 +2,8 @@ import jsonApiUrl from 'utils/json-api-url'
 import fetch from 'isomorphic-fetch'
 import { camelizeKeys } from 'humps'
 
-// ??? fix me: exportable action types!
+export const FETCH_CREATOR_POST_FEED_START = 'FETCH_CREATOR_POST_FEED_START'
+export const FETCH_CREATOR_POST_FEED_SUCCESS = 'FETCH_CREATOR_POST_FEED_SUCCESS'
 
 const fetchCreatorPostFeedIncludes = ['user.null']
 const fetchCreatorPostFeedFields = {
@@ -33,5 +34,13 @@ export const fetchCreatorPostFeed = (creatorId) => {
             'creator_id': creatorId
         }
     })
-    // ??? fix me
+    console.log(url) 
+
+    return fetch(url).then((response) => {
+
+      console.log('response', response)
+      return response.json().then((data) => {
+        return data
+      })
+    })
 }

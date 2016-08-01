@@ -4,6 +4,7 @@ import createLogger from 'redux-logger'
 
 
 export default function configureStore(reducers) {
+  console.log(reducers)
   const rootReducer = combineReducers(reducers)
   const middleware = [
     thunkMiddleware,

@@ -22,7 +22,8 @@ export default React.createClass({
     },
 
     componentDidMount() {
-        // ??? fix me
+      this.props.onMount(this.props.creatorId)
+      console.log(this.props)
     },
 
     renderPost(post) {

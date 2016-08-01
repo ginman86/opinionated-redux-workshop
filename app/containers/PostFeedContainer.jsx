@@ -1,17 +1,21 @@
 import { connect } from 'react-redux'
 import PostFeed from 'components/PostFeed'
-
+import { FETCH_CREATOR_POST_FEED_START, FETCH_CREATOR_POST_FEED_SUCCESS, fetchCreatorPostFeed } from 'actions/creator-post-feed'
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        // ??? fix me
-    }
+  console.log(state)
+  return { ...state.default }
 }
 
 const mapDispatchToProps = (dispatch) => {
+  console.log('Dispatch', dispatch)
     return {
         onMount: (creatorId) => {
-            // ??? fix me
+          fetchCreatorPostFeed(creatorId).then((result) => {
+            console.log(result)
+            return dispatch({
+              type: FETCH_CREATOR_POST_FEED_SUCCESS, result })
+          })
         }
     }
 }
